@@ -1,0 +1,17 @@
+# MySQL
+mysql/data/
+
+# SSL certs
+nginx/certs/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Node (if any)
+node_modules/
+
+# PHP
+vendor/
