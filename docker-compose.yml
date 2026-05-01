@@ -19,7 +19,7 @@ services:
     build: ./php
     volumes:
       - ../webstack:/var/www/html/webstack:ro
-      - ./projects/dev:/var/www/html/dev
+      - ./projects/dev:/var/www/html/dev:cached
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
@@ -35,6 +35,8 @@ services:
     command: >
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
+      --skip-log-bin
+      --innodb-buffer-pool-size=64M
     volumes:
       - ./mysql/data:/var/lib/mysql
     networks:
