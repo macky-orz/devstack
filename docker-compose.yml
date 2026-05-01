@@ -10,6 +10,7 @@ services:
     depends_on:
       - apache
       - phpmyadmin
+      - adminer
       - mailhog
     networks:
       - devnet
@@ -45,6 +46,13 @@ services:
       PMA_HOST: mysql
       PMA_ABSOLUTE_URI: https://pma.dev.localhost/
       PMA_FORCE_SSL: "true"
+    depends_on:
+      - mysql
+    networks:
+      - devnet
+
+  adminer:
+    image: adminer
     depends_on:
       - mysql
     networks:
