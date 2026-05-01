@@ -55,6 +55,8 @@ services:
     image: adminer
     depends_on:
       - mysql
+    volumes:
+      - ./adminer/adminer.css:/var/www/html/adminer.css
     networks:
       - devnet
 
