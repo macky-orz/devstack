@@ -70,4 +70,5 @@ services:
 
 networks:
   devnet:
+    name: devnet
     driver: bridge
