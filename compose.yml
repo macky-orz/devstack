@@ -32,6 +32,7 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
     command: >
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
