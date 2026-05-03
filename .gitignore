@@ -1,17 +1,25 @@
-# MySQL
-mysql/data/
-
 # SSL certs
-nginx/certs/
+docker/nginx/certs/
+
+# DB data
+mysql/data/
 
 # OS
 .DS_Store
+Thumbs.db
+ehthumbs.db
 
 # Logs
 *.log
+xdebug.log
+php_error.log
 
-# Node (if any)
-node_modules/
+# Docker
+*.pid
+*.sock
+docker-compose.override.yml
 
-# PHP
-vendor/
+# IDE
+.vscode/*
+!.vscode/launch.json
+.idea/

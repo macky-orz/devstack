@@ -5,22 +5,21 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./docker/nginx/certs:/etc/nginx/certs:ro
     depends_on:
       - apache
-      - mysql
       - adminer
       - mailhog
     networks:
       - devnet
 
   apache:
-    build: ./php
+    build: ./docker/php
     volumes:
       - ../webstack:/var/www/html/webstack:cached
       - ../sites:/var/www/html/sites:cached
-      - ./dev:/var/www/html/dev:cached
+      - ./dashboard:/var/www/html/dashboard:cached
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
@@ -48,7 +47,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./adminer/adminer.css:/var/www/html/adminer.css
+      - ./docker/adminer/adminer.css:/var/www/html/adminer.css:ro
     networks:
       - devnet
 

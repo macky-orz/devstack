@@ -11,5 +11,6 @@ RUN pecl install xdebug \
 RUN a2enmod rewrite headers
 
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /var/www/html
