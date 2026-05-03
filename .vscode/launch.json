@@ -2,14 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "dev.localhost",
+      "name": "devstack",
       "type": "php",
       "request": "launch",
       "port": 9003,
       "pathMappings": {
-        "/var/www/html": "${workspaceFolder}/projects"
-      },
-      "log": true
+        "/var/www/html/dev": "${workspaceFolder}/devstack/dev",
+        "/var/www/html/webstack": "${workspaceFolder}/webstack",
+        "/var/www/html/sites": "${workspaceFolder}/sites"
+      }
     }
   ]
 }

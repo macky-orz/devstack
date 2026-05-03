@@ -5,11 +5,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
     depends_on:
       - apache
-      - phpmyadmin
+      - mysql
       - adminer
       - mailhog
     networks:
@@ -18,8 +18,9 @@ services:
   apache:
     build: ./php
     volumes:
-      - ../webstack:/var/www/html/webstack:ro
-      - ./projects/dev:/var/www/html/dev:cached
+      - ../webstack:/var/www/html/webstack:cached
+      - ../sites:/var/www/html/sites:cached
+      - ./dev:/var/www/html/dev:cached
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
@@ -38,18 +39,7 @@ services:
       --skip-log-bin
       --innodb-buffer-pool-size=64M
     volumes:
-      - ./mysql/data:/var/lib/mysql
-    networks:
-      - devnet
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_ABSOLUTE_URI: https://pma.dev.localhost/
-      PMA_FORCE_SSL: "true"
-    depends_on:
-      - mysql
+      - mysql_data:/var/lib/mysql
     networks:
       - devnet
 
@@ -72,3 +62,6 @@ networks:
   devnet:
     name: devnet
     driver: bridge
+
+volumes:
+  mysql_data:
